@@ -35,26 +35,37 @@ const flashcards = [
 ]
 
 function FlashCard() {
+  const [currentFlashcard, setCurrentFlashcard] = useState(0);
   const [flipped, setFlipped] = useState(false);
 
-  const handleClick = () => {
+  const toggleFlip = () => {
     setFlipped(!flipped);
   };
 
+  const nextFlashcard = () => {
+    setCurrentFlashcard((prev) => (prev + 1) % flashcards.length);
+    setFlipped(false);
+  }
+
+  const previousFlashcard = () => {
+    setCurrentFlashcard((prev) => (prev - 1 + flashcards.length) % flashcards.length);
+    setFlipped(false);
+  }
+
   return (
-    flashcards.map((flashcard) => (
-      <div className="flashcard" onClick={handleClick}>
+    <div className="flashcard-container">
+      <div className="flashcard" onClick={toggleFlip}>
         {flipped ? (
-          <div className="back">
-            {flashcard.answer}
-          </div>
+          <div className="back">{flashcards[currentFlashcard].answer}</div>
         ) : (
-          <div className="front">
-            {flashcard.question}
-          </div>
+          <div className="front">{flashcards[currentFlashcard].question}</div>
         )}
       </div>
-    ))
+      <div className="flashcard-buttons">
+        <button onClick={previousFlashcard}>Previous</button>
+        <button onClick={nextFlashcard}>Next</button>
+      </div>
+    </div>
   );
 }
 
