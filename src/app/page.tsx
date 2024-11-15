@@ -1,15 +1,11 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import { ChevronLeft, ChevronRight, Menu, Plus, User } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Menu, Plus, User, X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+
 
 const flashcardSets = [
     {
@@ -48,6 +44,7 @@ export default function Component() {
   const [mounted, setMounted] = useState(false)
   const [currentCard, setCurrentCard] = useState(0)
   const [isFlipped, setIsFlipped] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -75,16 +72,31 @@ export default function Component() {
     <div className="flex flex-col min-h-screen bg-gray-100">
       <header className="flex items-center justify-between px-4 py-2 bg-white border-b">
         <div className="flex items-center">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="mr-2">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Open menu</span>
               </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-            </DropdownMenuContent>
-          </DropdownMenu>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[250px] sm:w-[300px]">
+              <SheetHeader>
+                <SheetTitle>Flashcard Sets</SheetTitle>
+              </SheetHeader>
+              <div className="py-4">
+                {Object.keys(flashcardSets).map((set) => (
+                  <Button
+                    key={set}
+                    variant="ghost"
+                    className="w-full justify-start"
+                    onClick={() => {}}
+                  >
+                    {set}
+                  </Button>
+                ))}
+              </div>
+            </SheetContent>
+          </Sheet>
           <h1 className="text-xl font-bold text-primary">FlashLingo</h1>
         </div>
         <div className="flex items-center space-x-2">
