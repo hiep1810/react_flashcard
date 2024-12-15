@@ -1,7 +1,8 @@
-import { Menu, Plus, User } from 'lucide-react'
+import { Menu, Plus, User, Home } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { flashcardSets } from '@/data/flashcards'
+import Link from 'next/link'
 
 interface HeaderProps {
   isOpen: boolean
@@ -38,9 +39,17 @@ export function Header({ isOpen, setIsOpen, onSelectCard }: HeaderProps) {
             </div>
           </SheetContent>
         </Sheet>
-        <h1 className="text-xl font-bold text-primary">FlashLingo</h1>
+        <Link href="/dashboard">
+          <h1 className="text-xl font-bold text-primary cursor-pointer">FlashLingo</h1>
+        </Link>
       </div>
       <div className="flex items-center space-x-2">
+        <Link href="/dashboard">
+          <Button variant="ghost" size="icon">
+            <Home className="h-5 w-5" />
+            <span className="sr-only">Dashboard</span>
+          </Button>
+        </Link>
         <Button variant="ghost" size="icon">
           <Plus className="h-5 w-5" />
           <span className="sr-only">Add flashcard</span>
