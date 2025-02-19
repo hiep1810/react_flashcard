@@ -1,8 +1,10 @@
-import { Menu, Plus, User, Home } from 'lucide-react'
+import { Menu, Plus } from 'lucide-react'
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { flashcardSets } from '@/data/flashcards'
 import Link from 'next/link'
+import { Avatar, AvatarFallback } from '@radix-ui/react-avatar'
+import { Input } from '@/components/ui/input'
+import { Search } from 'lucide-react'
+
 
 interface HeaderProps {
   isOpen: boolean
@@ -12,53 +14,35 @@ interface HeaderProps {
 
 export function Header({ isOpen, setIsOpen, onSelectCard }: HeaderProps) {
   return (
-    <header className="flex items-center justify-between px-4 py-2 bg-white border-b">
-      <div className="flex items-center">
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="mr-2">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Open menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-[250px] sm:w-[300px]">
-            <SheetHeader>
-              <SheetTitle>Flashcard Sets</SheetTitle>
-            </SheetHeader>
-            <div className="py-4">
-              {flashcardSets.map((set, index) => (
-                <Button
-                  key={index}
-                  variant="ghost"
-                  className="w-full justify-start"
-                  onClick={() => onSelectCard(index)}
-                >
-                  {set.category}
-                </Button>
-              ))}
-            </div>
-          </SheetContent>
-        </Sheet>
-        <Link href="/dashboard">
-          <h1 className="text-xl font-bold text-primary cursor-pointer">FlashLingo</h1>
-        </Link>
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div className="flex h-14 items-center px-4 gap-4">
+      <Button variant="ghost" size="icon" className="shrink-0">
+        <Menu className="h-5 w-5" />
+        <span className="sr-only">Menu</span>
+      </Button>
+      <Link href="#" className="flex items-center gap-2">
+        <div className="h-8 w-8 rounded-lg bg-primary text-primary-foreground grid place-items-center font-semibold">
+          Q
+        </div>
+      </Link>
+      <div className="flex-1 flex items-center">
+        <div className="w-full max-w-md flex items-center gap-2 px-3 rounded-md border bg-muted">
+          <Search className="h-4 w-4 text-muted-foreground shrink-0" />
+          <Input
+            type="search"
+            placeholder="Find it faster with a search"
+            className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+          />
+        </div>
       </div>
-      <div className="flex items-center space-x-2">
-        <Link href="/dashboard">
-          <Button variant="ghost" size="icon">
-            <Home className="h-5 w-5" />
-            <span className="sr-only">Dashboard</span>
-          </Button>
-        </Link>
-        <Button variant="ghost" size="icon">
-          <Plus className="h-5 w-5" />
-          <span className="sr-only">Add flashcard</span>
-        </Button>
-        <Button variant="ghost" size="icon">
-          <User className="h-5 w-5" />
-          <span className="sr-only">User profile</span>
-        </Button>
-      </div>
-    </header>
+      <Button size="icon" className="shrink-0">
+        <Plus className="h-5 w-5" />
+        <span className="sr-only">Add new</span>
+      </Button>
+      <Avatar className="h-8 w-8 border-2 rounded-full">
+        <AvatarFallback className="h-full w-full grid place-items-center rounded-full">T</AvatarFallback>
+      </Avatar>
+    </div>
+  </header>
   )
 } 
