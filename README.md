@@ -72,3 +72,11 @@ The project can be deployed to [Vercel Platform](https://vercel.com) or other ho
 ## License
 
 MIT
+
+## Contributing
+
+1. Fork the repository
+2. Create a new branch
+3. Make your changes and commit them
+4. Push to the branch
+5. Create a pull request
