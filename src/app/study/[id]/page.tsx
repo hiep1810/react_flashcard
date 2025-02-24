@@ -12,7 +12,7 @@ import { useState } from "react"
 export default function FlashcardPage() {
   const [isFlipped, setIsFlipped] = useState(false)
   return (
-    <main className="container py-6">
+    <main className="py-6 px-12">
       <div className="mb-6">
         <nav className="flex items-center text-sm mb-2">
           <Link href="#" className="text-muted-foreground hover:text-foreground">
@@ -36,32 +36,32 @@ export default function FlashcardPage() {
           </div>
         </div>
       </div>
-      <div className="relative w-full h-[300px] [perspective:1000px]">
-      <div
-        className="w-full h-full absolute transition-all duration-500 [transform-style:preserve-3d]"
-        style={{
-          transform: isFlipped ? 'rotateY(180deg)' : ''
-        }}
-      >
-      <Card className="mb-4" onClick={() => setIsFlipped(!isFlipped)}>
-        <CardContent className="pt-6">
-          <div className="flex justify-between items-start mb-20">
-            <Button variant="ghost" className="gap-2 text-muted-foreground">
-              Get a hint
-            </Button>
-            <Button variant="ghost" size="icon">
-              <Volume2 className="h-4 w-4" />
-              <span className="sr-only">Play sound</span>
-            </Button>
-          </div>
-          <div className="text-center text-6xl mb-20">弟</div>
-          <div className="bg-muted/50 rounded-lg p-2 text-sm text-center text-muted-foreground">
-            <span className="inline-block align-middle mr-2">⌨️</span>
-            Shortcut <span className="px-2 py-0.5 rounded bg-muted mx-1">Space</span> or click on the card to flip
-          </div>
-        </CardContent>
-      </Card>
-      </div>
+      <div className="">
+        <div
+          className="transition-all duration-500 [transform-style:preserve-3d]"
+          style={{
+            transform: isFlipped ? 'rotateY(180deg)' : ''
+          }}
+        >
+          <Card className="mb-4" onClick={() => setIsFlipped(!isFlipped)}>
+            <CardContent className="pt-6">
+              <div className="flex justify-between items-start mb-20">
+                <Button variant="ghost" className="gap-2 text-muted-foreground">
+                  Get a hint
+                </Button>
+                <Button variant="ghost" size="icon">
+                  <Volume2 className="h-4 w-4" />
+                  <span className="sr-only">Play sound</span>
+                </Button>
+              </div>
+              <div className="text-center text-6xl mb-20">弟</div>
+              <div className="bg-muted/50 rounded-lg p-2 text-sm text-center text-muted-foreground">
+                <span className="inline-block align-middle mr-2">⌨️</span>
+                Shortcut <span className="px-2 py-0.5 rounded bg-muted mx-1">Space</span> or click on the card to flip
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
 
       <div className="flex items-center justify-center gap-4 mb-6">
