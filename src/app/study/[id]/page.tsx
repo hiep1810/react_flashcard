@@ -43,7 +43,10 @@ export default function FlashcardPage() {
             transform: isFlipped ? 'rotateY(180deg)' : ''
           }}
         >
-          <Card className="mb-4" onClick={() => setIsFlipped(!isFlipped)}>
+          <Card 
+            className="mb-4 cursor-pointer" 
+            onClick={() => setIsFlipped(!isFlipped)}
+          >
             <CardContent className="pt-6">
               <div className="flex justify-between items-start mb-20">
                 <Button variant="ghost" className="gap-2 text-muted-foreground">
